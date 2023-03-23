@@ -150,10 +150,12 @@ class SubmitButton extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: themeColor),
           onPressed: () async {
-            if (isEdit) {
-              editAddress(index, context);
-            } else {
-              await addAddress(context);
+            if (formKey.currentState!.validate()) {
+              if (isEdit) {
+                editAddress(index, context);
+              } else {
+                await addAddress(context);
+              }
             }
           },
           child: Text(
@@ -246,7 +248,8 @@ class InputFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: (value) {
-        if (value == null || value.isEmpty) {
+        log(value!);
+        if (value == null || value.trim().isEmpty) {
           return '$label cannot be empty';
         } else {
           return null;

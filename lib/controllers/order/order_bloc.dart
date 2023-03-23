@@ -50,8 +50,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           for (var element in value.docs) {
             products.add(ProductModel.fromJson(element.data()));
           }
-          orders.sort();
-          emit(OrderState(orders: orders, products: products));
+          emit(OrderState(orders: userOrders, products: products));
         });
       });
     });

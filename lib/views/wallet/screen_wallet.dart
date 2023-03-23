@@ -10,7 +10,9 @@ class ScreenWallet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<WalletBloc>(context).add(GetBalance());
+    if (FirebaseAuth.instance.currentUser != null) {
+      BlocProvider.of<WalletBloc>(context).add(GetBalance());
+    }
     return Scaffold(
         appBar: const PreferredSize(
           preferredSize: Size(double.infinity, 200),
@@ -25,6 +27,14 @@ class ScreenWallet extends StatelessWidget {
               ),
               BlocBuilder<WalletBloc, WalletState>(
                 builder: (context, state) {
+                  if (FirebaseAuth.instance.currentUser == null) {
+                    return Center(
+                      child: Text(
+                        "Please Sign in First",
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    );
+                  }
                   return Text(
                     'Balance: ${state.balance}',
                     style: Theme.of(context).textTheme.titleLarge,

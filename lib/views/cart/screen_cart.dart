@@ -4,6 +4,8 @@ import 'package:cartzen/controllers/cart/cart_bloc.dart';
 import 'package:cartzen/controllers/cart_quantity/cart_quantity_bloc.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/views/select_address/screen_select_address.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +14,9 @@ class ScreenCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<CartBloc>(context).add(GetAllProducts());
+    if (FirebaseAuth.instance.currentUser != null) {
+      BlocProvider.of<CartBloc>(context).add(GetAllProducts());
+    }
     final List<int> quantities = [];
     final List<int> prices = [];
 
@@ -377,14 +381,43 @@ class StatusSection extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            BlocProvider.of<CartBloc>(context).add(
-              DeleteFromCart(
-                product: product,
-                products: allProducts,
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text("Are you sure"),
+                content: Text(
+                  "Do you want to delete this address",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        "cancel",
+                        style: Theme.of(context).textTheme.titleSmall,
+                      )),
+                  TextButton(
+                      onPressed: () {
+                        BlocProvider.of<CartBloc>(context).add(
+                          DeleteFromCart(
+                            product: product,
+                            products: allProducts,
+                          ),
+                        );
+                        BlocProvider.of<CartBloc>(context)
+                            .add(GetAllProducts());
+                        showSuccessSnacbar(context, 'Item deleted from cart');
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        "OK",
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ))
+                ],
               ),
             );
-            BlocProvider.of<CartBloc>(context).add(GetAllProducts());
-            showSuccessSnacbar(context, 'Item deleted from cart');
           },
           icon: const Icon(
             Icons.delete,

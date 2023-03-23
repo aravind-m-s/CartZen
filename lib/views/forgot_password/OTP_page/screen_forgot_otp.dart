@@ -1,4 +1,4 @@
-import 'package:cartzen/views/Login/screen_login.dart';
+import 'package:cartzen/views/login/screen_login.dart';
 import 'package:cartzen/views/common/default_auth_title.dart';
 import 'package:cartzen/views/common/default_back_button.dart';
 import 'package:cartzen/views/sign_up/screen_sign_up.dart';

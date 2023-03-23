@@ -1,19 +1,18 @@
-import 'dart:developer';
 import 'package:cartzen/controllers/banner/banner_bloc.dart';
 import 'package:cartzen/controllers/category/category_bloc.dart';
 import 'package:cartzen/controllers/whishlist/whishlist_bloc.dart';
 import 'package:cartzen/models/product_model.dart';
-import 'package:cartzen/views/Login/screen_login.dart';
+import 'package:cartzen/views/login/screen_login.dart';
 import 'package:cartzen/views/categories/screen_categories.dart';
 import 'package:cartzen/views/home/wdigets/app_bar.dart';
 import 'package:cartzen/controllers/home/home_bloc.dart';
-import 'package:cartzen/controllers/navigation/navigation_bloc.dart';
-import 'package:cartzen/controllers/theme/theme_bloc.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/views/product_details/screen_product_details.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mailto/mailto.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});
@@ -163,10 +162,10 @@ class RecentlyViewed extends StatelessWidget {
                         borderRadius: BorderRadius.circular(defaultRadius),
                         color: themeColor,
                         image: DecorationImage(
-                          image: NetworkImage(
-                            recentProducts[index].images[0],
-                          ),
-                        ),
+                            image: NetworkImage(
+                              recentProducts[index].images[0],
+                            ),
+                            fit: BoxFit.cover),
                       ),
                     ),
                     Text(
@@ -241,12 +240,9 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         currentProduct = cp;
-        BlocProvider.of<NavigationBloc>(context).add(
-          ChnangePage(
-            pageIndex: productDetailsIndex,
-            product: currentProduct,
-          ),
-        );
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ScreenProductDetails(),
+        ));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: padding * 2),
@@ -441,7 +437,9 @@ class SideMenu extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Mailto(to: ['aravindmangattu38@gmail.com']);
+              },
               child: Text(
                 'Give a Feedback',
                 style: Theme.of(context)
@@ -452,7 +450,10 @@ class SideMenu extends StatelessWidget {
             ),
             const Divider(),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                launchUrlString(
+                    'https://www.privacypolicygenerator.info/live.php?token=j5OXSirP3JBEaEA5VivEqYJVMFhXaHPJ');
+              },
               child: Text(
                 'Privacy policy',
                 style: Theme.of(context)
@@ -463,7 +464,10 @@ class SideMenu extends StatelessWidget {
             ),
             const Divider(),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                launchUrlString(
+                    'https://www.termsandconditionsgenerator.com/live.php?token=ZCVtBNQ58yrbGNjYc0wJzuJdS4szke7e');
+              },
               child: Text(
                 'Terms and conditions',
                 style: Theme.of(context)
@@ -473,32 +477,32 @@ class SideMenu extends StatelessWidget {
               ),
             ),
             const Divider(),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Dark theme',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontSize: 20),
-                  ),
-                ),
-                BlocBuilder<ThemeBloc, ThemeState>(
-                  builder: (context, state) {
-                    return Switch(
-                      value: state.darkTheme ?? false,
-                      onChanged: (value) {
-                        BlocProvider.of<ThemeBloc>(context)
-                            .add(ChangeTheme(value: value));
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
-            const Divider(),
+            // Row(
+            //   children: [
+            //     TextButton(
+            //       onPressed: () {},
+            //       child: Text(
+            //         'Dark theme',
+            //         style: Theme.of(context)
+            //             .textTheme
+            //             .titleLarge!
+            //             .copyWith(fontSize: 20),
+            //       ),
+            //     ),
+            //     BlocBuilder<ThemeBloc, ThemeState>(
+            //       builder: (context, state) {
+            //         return Switch(
+            //           value: state.darkTheme ?? false,
+            //           onChanged: (value) {
+            //             BlocProvider.of<ThemeBloc>(context)
+            //                 .add(ChangeTheme(value: value));
+            //           },
+            //         );
+            //       },
+            //     ),
+            //   ],
+            // ),
+            // const Divider(),
             FirebaseAuth.instance.currentUser == null
                 ? Builder(builder: (ctx) {
                     return Row(

@@ -3,6 +3,7 @@ import 'package:cartzen/models/user_model.dart';
 import 'package:cartzen/views/bottom_sheet/bottom_sheet.dart';
 import 'package:cartzen/views/common/default_auth_title.dart';
 import 'package:cartzen/views/common/default_back_button.dart';
+import 'package:cartzen/views/common/snacbar.dart';
 import 'package:cartzen/views/forgot_password/mobile_number_page/screen_mobile_page.dart';
 import 'package:cartzen/views/login_with_mobile.dart/screen_login_with_mobile.dart';
 import 'package:cartzen/views/sign_up/screen_sign_up.dart';
@@ -48,7 +49,6 @@ class ScreenLogin extends StatelessWidget {
                     formKey: formKey,
                   ),
                   kHeight,
-                  const CurrentUserStatus(),
                   kHeight,
                   LoginButtonWidget(
                     formKey: formKey,
@@ -123,48 +123,6 @@ class InputForm extends StatelessWidget {
   }
 }
 
-class CurrentUserStatus extends StatelessWidget {
-  const CurrentUserStatus({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Checkbox(
-              value: false,
-              onChanged: (value) {},
-            ),
-            Text(
-              'Remember me',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (ctx) => const ScreenForgotPswdMobile(),
-              ),
-            );
-          },
-          child: Text(
-            'Forgot Password',
-            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  decoration: TextDecoration.underline,
-                ),
-          ),
-        )
-      ],
-    );
-  }
-}
-
 class LoginButtonWidget extends StatelessWidget {
   const LoginButtonWidget({
     Key? key,
@@ -184,6 +142,7 @@ class LoginButtonWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(defaultRadius),
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: themeColor),
           onPressed: () {
             if (formKey.currentState!.validate()) {
               singIn(email, password, context);
@@ -231,7 +190,7 @@ Future singIn(TextEditingController email, TextEditingController password,
       ));
     });
   } catch (e) {
-    print(e);
+    showSuccessSnacbar(context, 'Something went wrong');
   }
 }
 
@@ -266,7 +225,7 @@ class OtherSingInMethods extends StatelessWidget {
                     .set(CartModel(id: uid, products: []).toJson());
               });
 
-              Navigator.of(context).push(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => const ScreenMain(),
               ));
             });

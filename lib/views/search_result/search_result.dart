@@ -3,7 +3,7 @@ import 'package:cartzen/controllers/search/search_bloc.dart';
 import 'package:cartzen/controllers/whishlist/whishlist_bloc.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/models/product_model.dart';
-import 'package:cartzen/views/Login/screen_login.dart';
+import 'package:cartzen/views/login/screen_login.dart';
 import 'package:cartzen/views/product_details/screen_product_details.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -232,6 +232,7 @@ class CurvedAppBar extends StatelessWidget {
                         .add(SearchProducts(query: value));
                   }
                 },
+                style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: "Search",
                   hintStyle: const TextStyle(fontSize: 14),

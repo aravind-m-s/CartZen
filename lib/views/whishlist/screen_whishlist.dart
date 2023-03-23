@@ -5,6 +5,7 @@ import 'package:cartzen/models/product_model.dart';
 import 'package:cartzen/views/product_details/screen_product_details.dart';
 import 'package:cartzen/views/whishlist/widgets/app_bar.dart';
 import 'package:cartzen/core/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,9 @@ class ScreenWhishlist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<WhishlistBloc>(context).add(GetAllWishListProducts());
+      if (FirebaseAuth.instance.currentUser != null) {
+        BlocProvider.of<WhishlistBloc>(context).add(GetAllWishListProducts());
+      }
     });
     return Scaffold(
       appBar: const PreferredSize(

@@ -1,9 +1,10 @@
-import 'package:cartzen/views/Login/screen_login.dart';
+import 'package:cartzen/views/login/screen_login.dart';
 import 'package:cartzen/views/address/screen_address.dart';
 import 'package:cartzen/views/bottom_sheet/bottom_sheet.dart';
 import 'package:cartzen/views/profile/widgets/app_bar.dart';
 import 'package:cartzen/controllers/navigation/navigation_bloc.dart';
 import 'package:cartzen/core/constants.dart';
+import 'package:cartzen/views/user_detials/screen_user_details.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -104,8 +105,9 @@ class ProfileButton extends StatelessWidget {
 
   _clicked(int index, BuildContext context) {
     if (index == 0) {
-      BlocProvider.of<NavigationBloc>(context)
-          .add(ChnangePage(pageIndex: editProfileIndex));
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ScreenUserDetails(),
+      ));
     } else if (index == 1) {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ScreenAddress(),

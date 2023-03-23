@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cartzen/controllers/address/address_bloc.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/views/add_edit_address/screen_add_edit_address.dart';
@@ -96,25 +94,55 @@ class AddressWidget extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () async {
-                    await FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .get()
-                        .then((value) async {
-                      final data = value.data() ?? {};
-                      final List addresses = data['address'] ?? [];
-                      addresses.removeAt(index);
-                      data['address'] = addresses;
-                      await FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(FirebaseAuth.instance.currentUser!.uid)
-                          .update(data)
-                          .then((value) {
-                        BlocProvider.of<AddressBloc>(context)
-                            .add(GetAllAddress());
-                      });
-                    });
-                    BlocProvider.of<AddressBloc>(context).add(GetAllAddress());
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text("Are you sure"),
+                        content: Text(
+                          "Do you want to delete this address",
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(
+                                "cancel",
+                                style: Theme.of(context).textTheme.titleSmall,
+                              )),
+                          TextButton(
+                            onPressed: () async {
+                              await FirebaseFirestore.instance
+                                  .collection('users')
+                                  .doc(FirebaseAuth.instance.currentUser!.uid)
+                                  .get()
+                                  .then((value) async {
+                                final data = value.data() ?? {};
+                                final List addresses = data['address'] ?? [];
+                                addresses.removeAt(index);
+                                data['address'] = addresses;
+                                await FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .update(data)
+                                    .then((value) {
+                                  BlocProvider.of<AddressBloc>(context)
+                                      .add(GetAllAddress());
+                                });
+                              });
+                              Navigator.of(context).pop();
+                              BlocProvider.of<AddressBloc>(context)
+                                  .add(GetAllAddress());
+                            },
+                            child: Text(
+                              "OK",
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
                   },
                   icon: const Icon(
                     Icons.delete,

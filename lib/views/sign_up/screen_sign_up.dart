@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:cartzen/models/cart_model.dart';
 import 'package:cartzen/models/user_model.dart';
-import 'package:cartzen/views/Login/screen_login.dart';
+import 'package:cartzen/views/common/snacbar.dart';
+import 'package:cartzen/views/login/screen_login.dart';
 import 'package:cartzen/views/bottom_sheet/bottom_sheet.dart';
 import 'package:cartzen/views/common/default_auth_title.dart';
 import 'package:cartzen/views/common/default_back_button.dart';
@@ -82,7 +83,7 @@ class ScreenSignUp extends StatelessWidget {
                               .set(CartModel(id: uid, products: []).toJson());
                         });
 
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const ScreenMain(),
                         ));
                       });
@@ -116,7 +117,7 @@ class SignInWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.of(context).push(
+        Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (ctx) => const ScreenLogin(),
           ),
@@ -201,6 +202,7 @@ class SignUpButtonWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(defaultRadius),
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: themeColor),
           onPressed: () {
             if (formKey.currentState!.validate()) {
               signUp(email, password, context).then((value) async {
@@ -219,7 +221,7 @@ class SignUpButtonWidget extends StatelessWidget {
                       .set(CartModel(id: uid, products: []).toJson());
                 });
 
-                Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const ScreenMain(),
                 ));
               });
@@ -243,7 +245,7 @@ Future signUp(email, password, context) async {
     await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email.text.trim(), password: password.text.trim());
   } catch (e) {
-    print(e);
+    showSuccessSnacbar(context, 'Something went wrong');
   }
 }
 

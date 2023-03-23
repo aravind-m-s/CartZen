@@ -158,7 +158,7 @@ class LogIn extends StatelessWidget {
                         .set(CartModel(id: uid, products: []).toJson());
                   });
 
-                  Navigator.of(context).push(MaterialPageRoute(
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const ScreenMain(),
                   ));
                 });
@@ -240,7 +240,7 @@ class SingUpWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.of(context).push(
+        Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (ctx) => const ScreenSignUp(),
           ),

@@ -40,7 +40,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 recents.add(element);
               }
             });
-            emit(HomeState(products: products, recentProducts: recents));
+            emit(HomeState(
+                products: products, recentProducts: recents.reversed.toList()));
           }
         });
       } else {

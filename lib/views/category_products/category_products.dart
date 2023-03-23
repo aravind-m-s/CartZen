@@ -2,7 +2,7 @@ import 'package:cartzen/controllers/category/category_bloc.dart';
 import 'package:cartzen/controllers/whishlist/whishlist_bloc.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/models/product_model.dart';
-import 'package:cartzen/views/Login/screen_login.dart';
+import 'package:cartzen/views/login/screen_login.dart';
 import 'package:cartzen/views/product_details/screen_product_details.dart';
 import 'package:cartzen/views/select_address/screen_select_address.dart';
 import 'package:firebase_auth/firebase_auth.dart';

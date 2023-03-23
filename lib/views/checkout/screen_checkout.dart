@@ -384,7 +384,7 @@ class PaymentMethods extends StatelessWidget {
     openGateway(String orderId) {
       var option = {
         'key': key_id,
-        'amount': total * 100,
+        'amount': (total - couponTotal) * 100,
         'name': 'Order',
         'orderId': orderId,
         'description': 'A simple order',
@@ -398,7 +398,7 @@ class PaymentMethods extends StatelessWidget {
       final basicAuth =
           'Basic ${base64Encode(utf8.encode('$key_id:$key_secret'))}';
       Map<String, dynamic> body = {
-        "amount": total * 100,
+        "amount": (total - couponTotal) * 100,
         "currency": "INR",
         "receipt": "rcptid_11"
       };

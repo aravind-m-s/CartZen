@@ -1,7 +1,7 @@
 import 'package:cartzen/controllers/whishlist/whishlist_bloc.dart';
 import 'package:cartzen/models/cart_model.dart';
 import 'package:cartzen/models/product_model.dart';
-import 'package:cartzen/views/Login/screen_login.dart';
+import 'package:cartzen/views/login/screen_login.dart';
 import 'package:cartzen/views/common/default_back_button.dart';
 import 'package:cartzen/controllers/cart/cart_bloc.dart';
 import 'package:cartzen/controllers/product_details/product_details_bloc.dart';
@@ -70,8 +70,15 @@ class ScreenProductDetails extends StatelessWidget {
                             size: 32,
                           ),
                     onPressed: () {
-                      BlocProvider.of<WhishlistBloc>(context).add(
-                          ChnageWhishListOption(productId: currentProduct!.id));
+                      if (FirebaseAuth.instance.currentUser == null) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ScreenLogin(),
+                        ));
+                      } else {
+                        BlocProvider.of<WhishlistBloc>(context).add(
+                            ChnageWhishListOption(
+                                productId: currentProduct!.id));
+                      }
                     },
                   );
                 },

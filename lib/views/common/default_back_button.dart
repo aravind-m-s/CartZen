@@ -1,7 +1,4 @@
-import 'package:cartzen/controllers/navigation/navigation_bloc.dart';
-import 'package:cartzen/core/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DefaultBackButton extends StatelessWidget {
   const DefaultBackButton({
@@ -21,12 +18,7 @@ class DefaultBackButton extends StatelessWidget {
           size: 36,
         ),
         onPressed: () {
-          if (isBack) {
-            Navigator.of(context).pop();
-          } else {
-            BlocProvider.of<NavigationBloc>(context)
-                .add(ChnangePage(pageIndex: previousIndex));
-          }
+          Navigator.of(context).pop();
         },
       ),
     );
