@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "188141820716",
+    "project_id": "cartzen-000",
+    "storage_bucket": "cartzen-000.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188141820716:android:4491689e20044c7856aa89",
+        "android_client_info": {
+          "package_name": "in.aravind.cartzen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188141820716-4dovdrpnu232ri711bra4ksvaukpbt6r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu7bOyOOHPidq-WNhax0hEAfhApzrywOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188141820716-4dovdrpnu232ri711bra4ksvaukpbt6r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
