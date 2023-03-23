@@ -1,4 +1,3 @@
-import 'package:cartzen/controllers/navigation/navigation_bloc.dart';
 import 'package:cartzen/controllers/search/search_bloc.dart';
 import 'package:cartzen/controllers/whishlist/whishlist_bloc.dart';
 import 'package:cartzen/core/constants.dart';
@@ -81,7 +80,7 @@ class ProductCard extends StatelessWidget {
       onTap: () {
         currentProduct = cp;
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ScreenProductDetails(),
+          builder: (context) => const ScreenProductDetails(),
         ));
       },
       child: Padding(

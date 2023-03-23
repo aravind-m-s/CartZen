@@ -150,7 +150,7 @@ class RecentlyViewed extends StatelessWidget {
                 onTap: () {
                   currentProduct = recentProducts[index];
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ScreenProductDetails(),
+                    builder: (context) => const ScreenProductDetails(),
                   ));
                 },
                 child: Column(
@@ -241,7 +241,7 @@ class ProductCard extends StatelessWidget {
       onTap: () {
         currentProduct = cp;
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ScreenProductDetails(),
+          builder: (context) => const ScreenProductDetails(),
         ));
       },
       child: Padding(

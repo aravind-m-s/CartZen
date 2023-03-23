@@ -36,8 +36,7 @@ class ScreenOrderDetails extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(padding * 2),
         child: ListView.separated(
-          itemBuilder: (context, index) => Container(
-              child: Row(
+          itemBuilder: (context, index) => Row(
             children: [
               ImageWidget(image: pdts[index].images[0]),
               kWidth10,
@@ -80,7 +79,7 @@ class ScreenOrderDetails extends StatelessWidget {
                 ],
               )
             ],
-          )),
+          ),
           separatorBuilder: (context, index) => kHeight,
           itemCount: order.products.length,
         ),

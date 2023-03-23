@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'dart:developer';
 import 'package:cartzen/models/order_model.dart';
 import 'package:cartzen/models/product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,6 +51,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           for (var element in value.docs) {
             products.add(ProductModel.fromJson(element.data()));
           }
+          log(userOrders.toString());
           emit(OrderState(orders: userOrders, products: products));
         });
       });

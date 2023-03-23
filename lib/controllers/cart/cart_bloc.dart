@@ -1,15 +1,9 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:cartzen/models/cart_model.dart';
 import 'package:cartzen/models/product_model.dart';
-import 'package:cartzen/views/home/screen_home.dart';
-import 'package:cartzen/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -31,16 +25,17 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
       final String id = userCart?['id'] ?? '';
       List cart = userCart?['products'] ?? [{}];
-      final List<ProductModel> products = [];
       List<ProductModel> cartProducts = [];
       if (cart.isNotEmpty) {
         List<Map<String, dynamic>> products = [];
         await FirebaseFirestore.instance
             .collection('products')
             .get()
-            .then((value) => value.docs.forEach((element) {
-                  products.add(element.data());
-                }));
+            .then((value) {
+          for (var element in value.docs) {
+            products.add(element.data());
+          }
+        });
         for (var product in cart) {
           for (var mainProduct in products) {
             if (product['productId'] == mainProduct['id']) {

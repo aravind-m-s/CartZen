@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cartzen/models/cart_model.dart';
 import 'package:cartzen/models/user_model.dart';
 import 'package:cartzen/views/common/snacbar.dart';
@@ -7,12 +5,10 @@ import 'package:cartzen/views/login/screen_login.dart';
 import 'package:cartzen/views/bottom_sheet/bottom_sheet.dart';
 import 'package:cartzen/views/common/default_auth_title.dart';
 import 'package:cartzen/views/common/default_back_button.dart';
-import 'package:cartzen/views/user_detials/screen_user_details.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/core/themes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class ScreenSignUp extends StatelessWidget {
@@ -83,6 +79,7 @@ class ScreenSignUp extends StatelessWidget {
                               .set(CartModel(id: uid, products: []).toJson());
                         });
 
+                        // ignore: use_build_context_synchronously
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const ScreenMain(),
                         ));
@@ -192,6 +189,7 @@ class SignUpButtonWidget extends StatelessWidget {
   }) : super(key: key);
   final TextEditingController email;
   final TextEditingController password;
+  // ignore: prefer_typing_uninitialized_variables
   final formKey;
 
   @override
@@ -221,6 +219,7 @@ class SignUpButtonWidget extends StatelessWidget {
                       .set(CartModel(id: uid, products: []).toJson());
                 });
 
+                // ignore: use_build_context_synchronously
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const ScreenMain(),
                 ));

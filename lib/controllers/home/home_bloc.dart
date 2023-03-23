@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:cartzen/models/product_model.dart';
 import 'package:cartzen/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:meta/meta.dart';
-
+import 'package:flutter/foundation.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 

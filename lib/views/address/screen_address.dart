@@ -97,7 +97,7 @@ class AddressWidget extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: Text("Are you sure"),
+                        title: const Text("Are you sure"),
                         content: Text(
                           "Do you want to delete this address",
                           style: Theme.of(context).textTheme.titleSmall,
@@ -222,13 +222,13 @@ class Appbar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 color: Colors.black,
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
-              Text(
+              const Text(
                 "Address",
                 style: TextStyle(
                   fontSize: 40,

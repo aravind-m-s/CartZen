@@ -47,7 +47,7 @@ class ScreenLoginOTP extends StatelessWidget {
                   subTitle:
                       "Please enter your mobile number and\nwe will send you an OTP to verify",
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 MobileInput(mobileKey: mobileKey),
@@ -61,7 +61,7 @@ class ScreenLoginOTP extends StatelessWidget {
                   formKey: otpKey,
                   otp: otp,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 const SingUpWidget(),
@@ -98,7 +98,6 @@ class ConfirmButton extends StatelessWidget {
                 verificationFailed: (error) {},
                 codeSent: (verificationId, forceResendingToken) {
                   verification = verificationId;
-                  print('Sent');
                 },
                 codeAutoRetrievalTimeout: (verificationId) {},
               );

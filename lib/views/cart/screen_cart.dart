@@ -1,10 +1,10 @@
+import 'dart:developer';
 import 'package:cartzen/models/product_model.dart';
 import 'package:cartzen/views/common/snacbar.dart';
 import 'package:cartzen/controllers/cart/cart_bloc.dart';
 import 'package:cartzen/controllers/cart_quantity/cart_quantity_bloc.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/views/select_address/screen_select_address.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,9 +53,10 @@ class ScreenCart extends StatelessWidget {
                 for (var element in state.fullProduct) {
                   if (element.offer != 0) {
                     if (element.isPercent) {
-                      int discountedPrice =
-                          element.price * (1 - element.offer / 100).round();
-                      prices.add(discountedPrice);
+                      final int discount =
+                          (element.price * element.offer / 100).round();
+
+                      prices.add(element.price - discount);
                     } else {
                       prices.add(element.price - element.offer);
                     }
@@ -384,7 +385,7 @@ class StatusSection extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text("Are you sure"),
+                title: const Text("Are you sure"),
                 content: Text(
                   "Do you want to delete this address",
                   style: Theme.of(context).textTheme.titleSmall,

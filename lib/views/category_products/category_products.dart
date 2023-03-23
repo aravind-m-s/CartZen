@@ -7,8 +7,6 @@ import 'package:cartzen/views/product_details/screen_product_details.dart';
 import 'package:cartzen/views/select_address/screen_select_address.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ScreenCategoryProducts extends StatelessWidget {
@@ -71,7 +69,7 @@ class ProductCard extends StatelessWidget {
       onTap: () {
         currentProduct = cp;
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ScreenProductDetails(),
+          builder: (context) => const ScreenProductDetails(),
         ));
       },
       child: Padding(

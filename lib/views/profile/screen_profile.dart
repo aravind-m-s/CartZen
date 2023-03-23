@@ -106,11 +106,11 @@ class ProfileButton extends StatelessWidget {
   _clicked(int index, BuildContext context) {
     if (index == 0) {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ScreenUserDetails(),
+        builder: (context) => const ScreenUserDetails(),
       ));
     } else if (index == 1) {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ScreenAddress(),
+        builder: (context) => const ScreenAddress(),
       ));
     } else if (index == 2) {
       BlocProvider.of<NavigationBloc>(context)
@@ -118,12 +118,12 @@ class ProfileButton extends StatelessWidget {
     } else if (index == 3) {
       FirebaseAuth.instance.signOut().then((value) {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ScreenMain(),
+          builder: (context) => const ScreenMain(),
         ));
       });
     } else {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ScreenLogin(),
+        builder: (context) => const ScreenLogin(),
       ));
     }
   }

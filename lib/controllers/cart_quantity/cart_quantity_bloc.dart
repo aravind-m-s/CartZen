@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:cartzen/models/cart_model.dart';
-import 'package:cartzen/views/cart/screen_cart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 part 'cart_quantity_event.dart';
 part 'cart_quantity_state.dart';

@@ -72,7 +72,7 @@ class ScreenProductDetails extends StatelessWidget {
                     onPressed: () {
                       if (FirebaseAuth.instance.currentUser == null) {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ScreenLogin(),
+                          builder: (context) => const ScreenLogin(),
                         ));
                       } else {
                         BlocProvider.of<WhishlistBloc>(context).add(

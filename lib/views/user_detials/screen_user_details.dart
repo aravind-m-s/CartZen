@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cartzen/models/user_model.dart';
 import 'package:cartzen/views/common/default_back_button.dart';
 import 'package:cartzen/core/constants.dart';
@@ -117,6 +115,7 @@ class SubmitButton extends StatelessWidget {
     required this.email,
     required this.mobile,
   }) : super(key: key);
+  // ignore: prefer_typing_uninitialized_variables
   final formKey;
   final TextEditingController email;
   final TextEditingController name;

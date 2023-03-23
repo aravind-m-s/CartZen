@@ -1,11 +1,7 @@
-import 'dart:developer';
-
 import 'package:cartzen/controllers/address/address_bloc.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/views/add_edit_address/screen_add_edit_address.dart';
 import 'package:cartzen/views/checkout/screen_checkout.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -173,13 +169,13 @@ class Appbar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 color: Colors.black,
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
-              Text(
+              const Text(
                 "Address",
                 style: TextStyle(
                   fontSize: 40,

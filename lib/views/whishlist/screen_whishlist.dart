@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cartzen/controllers/whishlist/whishlist_bloc.dart';
 import 'package:cartzen/models/product_model.dart';
 import 'package:cartzen/views/product_details/screen_product_details.dart';
@@ -76,8 +74,8 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         currentProduct = product;
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ScreenProductDetails()));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const ScreenProductDetails()));
       },
       child: Row(
         children: [

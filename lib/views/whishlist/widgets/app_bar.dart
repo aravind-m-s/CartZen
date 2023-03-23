@@ -19,7 +19,7 @@ class CurvedAppBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Icon(
                 Icons.favorite,
                 color: Colors.black,

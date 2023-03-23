@@ -1,6 +1,5 @@
 import 'package:cartzen/controllers/wallet/wallet_bloc.dart';
 import 'package:cartzen/views/wallet/widgets/app_bar.dart';
-import 'package:cartzen/core/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
