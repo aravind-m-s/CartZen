@@ -35,53 +35,86 @@ class ScreenOrderDetails extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(padding * 2),
-        child: ListView.separated(
-          itemBuilder: (context, index) => Row(
-            children: [
-              ImageWidget(image: pdts[index].images[0]),
-              kWidth10,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    products[index].name,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Color:',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      kWidth10,
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundColor: Color(
-                          int.parse(
-                            order.products[index]['color'],
-                          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ListView.separated(
+                itemBuilder: (context, index) => Row(
+                  children: [
+                    ImageWidget(image: pdts[index].images[0]),
+                    kWidth10,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          products[index].name,
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
-                      )
-                    ],
-                  ),
-                  Text(
-                    'Size:  ${order.products[index]["size"]}',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Text(
-                    "Quantity:  ${order.products[index]["quantity"]}",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Text(
-                    "Price:  ₹ ${pdts[index].price * order.products[index]['quantity']}",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  )
-                ],
-              )
-            ],
-          ),
-          separatorBuilder: (context, index) => kHeight,
-          itemCount: order.products.length,
+                        Row(
+                          children: [
+                            Text(
+                              'Color:',
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            kWidth10,
+                            CircleAvatar(
+                              radius: 15,
+                              backgroundColor: Color(
+                                int.parse(
+                                  order.products[index]['color'],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Text(
+                          'Size:  ${order.products[index]["size"]}',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        Text(
+                          "Quantity:  ${order.products[index]["quantity"]}",
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        Text(
+                          "Price:  ₹ ${pdts[index].price * order.products[index]['quantity']}",
+                          style: Theme.of(context).textTheme.titleLarge,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                separatorBuilder: (context, index) => kHeight,
+                itemCount: order.products.length,
+              ),
+            ),
+            Text(
+              "Address",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            kHeight,
+            Text(
+              order.address['name'],
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            Text(
+              order.address['address'],
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            Text(
+              order.address['locality'],
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            Text(
+              order.address['pincode'],
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            kHeight,
+            Text(
+              "Coupon Used: ${order.coupon == "" ? 'No Coupon Used' : order.coupon}",
+              style: Theme.of(context).textTheme.titleLarge,
+            )
+          ],
         ),
       ),
     );

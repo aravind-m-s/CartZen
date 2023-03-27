@@ -7,6 +7,7 @@ import 'package:cartzen/controllers/cart/cart_bloc.dart';
 import 'package:cartzen/controllers/product_details/product_details_bloc.dart';
 import 'package:cartzen/core/constants.dart';
 import 'package:cartzen/views/common/snacbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
